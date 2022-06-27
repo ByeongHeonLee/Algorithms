@@ -22,7 +22,6 @@ typedef unsigned int ui;
 
 // Constants
 const ui MAX = 500; // Maximum size of board
-const ui FALSE = 0; //
 
 // Global Variables
 ui board[MAX][MAX]; // Board
