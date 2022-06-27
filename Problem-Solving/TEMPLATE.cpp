@@ -1,3 +1,16 @@
+/* 
+ * [Author]
+ * Byeong Heon Lee
+ * lww7438@gmail.com
+ * (Blog Post URL) (Korean)
+ */ 
+
+// Problem URL
+// (PS Site URL)
+
+// Debug Switch
+// #define DEBUG_MODE
+
 // Header Files
 #include <iostream>
 
@@ -5,10 +18,18 @@
 using namespace std;
 typedef int INT;
 
+// Constants
+const int MAX = 1000;
+
 // Global Variables
 INT glob;
 
-
+// Function Prototypes
+void get_input();
+void run();
+void set_output();
+void deallocate();
+int main();
 
 /*
  *  Function Name : get_input
@@ -19,7 +40,7 @@ INT glob;
 void get_input()
 {
     // C++ Fast I/O Mechanism
-    // https://dad-rock.tistory.com/737?category=723623 (Korean)
+    // https://dad-rock.tistory.com/737 (Korean)
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 }

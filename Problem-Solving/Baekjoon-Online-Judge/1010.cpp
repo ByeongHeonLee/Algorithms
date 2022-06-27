@@ -1,3 +1,16 @@
+/* 
+ * [Author]
+ * Byeong Heon Lee
+ * lww7438@gmail.com
+ * https://dad-rock.tistory.com/343 (Korean)
+ */ 
+
+// Problem URL
+// https://www.acmicpc.net/problem/1010
+
+// Debug Switch
+// #define DEBUG_MODE
+
 // Header Files
 #include <iostream>
 
@@ -8,8 +21,6 @@ typedef long long INT;
 // Global Variables
 INT** input_pairs = nullptr;
 int reps = 0;
-
-
 
 /*
  *  Function Name : get_binomial_coefficient
