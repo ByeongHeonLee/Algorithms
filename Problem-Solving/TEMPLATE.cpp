@@ -3,6 +3,7 @@
  * Byeong Heon Lee
  * lww7438@gmail.com
  * (Blog Post URL) (Korean)
+ * 
  */ 
 
 // Problem URL
@@ -83,6 +84,7 @@ int main()
     get_input();
     run();
     set_output();
+    deallocate();
 
     return EXIT_SUCCESS;
 }
