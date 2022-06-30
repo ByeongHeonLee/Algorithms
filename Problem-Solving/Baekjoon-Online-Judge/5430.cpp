@@ -36,15 +36,62 @@ INDEX back;                              // Back index of int_array
 bool ERROR = false;                      // Error flag
 
 // Function Prototypes
+void reverse();
+bool drop();
+void swap(INDEX *a, INDEX *b);
+
 void get_input();
 void run();
 void set_output();
 void deallocate();
 int main();
 
-void reverse();
-bool drop();
-void swap(INDEX *a, INDEX *b);
+/*
+ *  Function Name : reverse
+ *  Parameters    : -
+ *  Return Type   : -
+ *  Description   : It swaps front and back
+ */
+void reverse()
+{
+    swap(&front, &back);
+}
+
+/*
+ *  Function Name : drop
+ *  Parameters    : -
+ *  Return Type   : bool
+ *  Description   : It expresses the front as if the element has been removed by pushing it back a space.
+ *                  Returns false if it is a list with no elements.
+ */
+bool drop()
+{
+    if (n == 0)
+        return false;
+
+    if (front <= back)
+        front++;
+    else
+        front--;
+
+    n--;
+    return true;
+}
+
+/*
+ *  Function Name : swap
+ *  Parameters    : 1) a (unsigned int*) : Index of elements to be swapped
+ *                  2) b (unsigned int*) : Index of elements to be swapped
+ *  Return Type   : -
+ *  Description   : It expresses the front as if the element has been removed by pushing it back a space.
+ *                  Returns false if it is a list with no elements.
+ */
+void swap(INDEX *a, INDEX *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
 /*
  *  Function Name : get_input
@@ -178,30 +225,4 @@ int main()
     }
 
     return EXIT_SUCCESS;
-}
-
-void reverse()
-{
-    swap(&front, &back);
-}
-
-bool drop()
-{
-    if (n == 0)
-        return false;
-
-    if (front <= back)
-        front++;
-    else
-        front--;
-
-    n--;
-    return true;
-}
-
-void swap(INDEX *a, INDEX *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
 }
