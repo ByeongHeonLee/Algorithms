@@ -18,15 +18,6 @@
 
 // Namespace & Aliases
 using namespace std;
-<<<<<<< HEAD
-typedef int INDEX;
-typedef short ELEMENT;
-
-// Constants
-const int SIZE = 100000;       // Maximum size of input string
-const char *DELIMITER = "[,]"; // Delimiters '[', ',', ']'
-
-=======
 typedef unsigned int INDEX;
 typedef short ELEMENT;
 
@@ -35,7 +26,6 @@ const INDEX SIZE = 100000;     // Maximum size of input string
 const char *DELIMITER = "[,]"; // Delimiters '[', ',', ']'
 
 
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
 // Global Variables
 char p[SIZE + 1];                        // input functions
 INDEX n;                                 // # of functions
@@ -43,10 +33,6 @@ char str_array[SIZE * 3 + SIZE - 1 + 2]; // String to store the input array
 ELEMENT int_array[SIZE];                 // Array to store elements of the array str_array
 INDEX front;                             // Front index of int_array
 INDEX back;                              // Back index of int_array
-<<<<<<< HEAD
-
-// Function Prototypes
-=======
 bool ERROR = false;                      // Error flag
 
 // Function Prototypes
@@ -54,18 +40,12 @@ void reverse();
 bool drop();
 void swap(INDEX *a, INDEX *b);
 
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
 void get_input();
 void run();
 void set_output();
 void deallocate();
 int main();
 
-<<<<<<< HEAD
-void reverse();
-bool drop();
-void swap(INDEX *a, INDEX *b);
-=======
 /*
  *  Function Name : reverse
  *  Parameters    : -
@@ -112,7 +92,6 @@ void swap(INDEX *a, INDEX *b)
     *a = *b;
     *b = temp;
 }
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
 
 /*
  *  Function Name : get_input
@@ -164,16 +143,6 @@ void run()
     {
         if (p[i] == 'R')
             reverse();
-<<<<<<< HEAD
-        if (p[i] == 'D')
-        {
-            if (!drop())
-            {
-                cout << "error\n";
-                return;
-            }
-        }
-=======
         else if (p[i] == 'D')
         {
             if (!drop())
@@ -184,7 +153,6 @@ void run()
         }
         else
             throw "Error: Unexpected input"; // Hard Error
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
     }
 }
 
@@ -196,15 +164,12 @@ void run()
  */
 void set_output()
 {
-<<<<<<< HEAD
-=======
     if (ERROR)
     {
         cout << "error\n";
         return;
     }
 
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
     if (n == 0)
     {
         cout << "[]\n";
@@ -231,20 +196,13 @@ void set_output()
  *  Function Name : deallocate
  *  Parameters    : -
  *  Return Type   : -
-<<<<<<< HEAD
- *  Description   : Deallocate the heap
-=======
  *  Description   : Deallocate the heap and initialize the global variables and flags
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
  */
 void deallocate()
 {
     memset(str_array, '\0', sizeof(char) * (SIZE * 3 + SIZE - 1 + 2));
     memset(int_array, 0, sizeof(ELEMENT) * SIZE);
-<<<<<<< HEAD
-=======
     ERROR = false;
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
 }
 
 /*
@@ -268,32 +226,3 @@ int main()
 
     return EXIT_SUCCESS;
 }
-<<<<<<< HEAD
-
-void reverse()
-{
-    swap(&front, &back);
-}
-
-bool drop()
-{
-    if (n == 0)
-        return false;
-
-    if (front <= back)
-        front++;
-    else
-        front--;
-
-    n--;
-    return true;
-}
-
-void swap(INDEX *a, INDEX *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-=======
->>>>>>> 71540b407b710ffc4e94653edc48f47bb4442602
