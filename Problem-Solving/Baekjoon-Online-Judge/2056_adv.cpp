@@ -2,7 +2,7 @@
  * [Author]
  * Byeong Heon Lee
  * lww7438@gmail.com
- * (Blog Post URL) (Korean)
+ * https://dad-rock.tistory.com/954 (Korean)
  *
  */
 
@@ -16,19 +16,21 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
+#include <vector>
 
 // Namespace & Aliases
 using namespace std;
 typedef unsigned int INT;
 
 // Constants
-const int MAX         = 10000; // The maximum number of jobs
-const INT PREDECESSOR = 101;   // The Symbol of Predecessor
+const int MAX = 10000;       // The maximum number of jobs
+const INT PREDECESSOR = 101; // The symbol of predecessor
 
 // Global Variables
-INT N;               // The Number of Jobs
-INT* graph[MAX+1];   // 2-D Array for Graph
-INT opt_times[MAX];  // 1-D Array for Optimal Turnaround Time
+INT N;                             // The number of jobs
+INT job_times[MAX + 1];            // 1-D array to store turnaround times
+vector<INT> predecessors[MAX + 1]; // Vector to store information of predecessor
+INT opt_times[MAX + 1];            // 1-D array for optimal turnaround time
 
 // Function Prototypes
 void get_input();
@@ -52,28 +54,35 @@ void get_input()
 
     cin >> N;
 
-    for (int i = 1; i < N + 1; i++)
-    {
-        opt_times[i] = 0;
-
-        graph[i] = new INT[i+1];
-        for (int j = 1; j < i + 1; j++)
-            graph[i][j] = 0;
-    }
-
     INT turnaround_time, cnt_predecessor, predecessor;
     for (int i = 1; i < N + 1; i++)
     {
         cin >> turnaround_time >> cnt_predecessor;
 
-        graph[i][i] = turnaround_time;
+        job_times[i] = turnaround_time;
 
         while (cnt_predecessor--)
         {
             cin >> predecessor;
-            graph[i][predecessor] = PREDECESSOR;
+            predecessors[i].push_back(predecessor);
         }
     }
+
+#ifdef DEBUG_MODE
+    cout << "STATUS: job times & predecessors\n";
+    for (int i = 1; i < N + 1; i++)
+    {
+        cout << "Turnaround time of " << i << "th Job: " << job_times[i] << '\n';
+
+        cout << "Predecessor: ";
+        vector<INT>::iterator iter = predecessors[i].begin();
+        for (iter; iter < predecessors[i].end(); iter++)
+            cout << *iter << ' ';
+        cout << "\n\n";
+    }
+
+    cout << "\n\n";
+#endif
 }
 
 /*
@@ -86,13 +95,13 @@ void run()
 {
     for (int i = 1; i < N + 1; i++)
     {
-        for (int j = 1; j < i + 1; j++)
+        while (!predecessors[i].empty())
         {
-            if (graph[i][j] == PREDECESSOR)
-                opt_times[i] = max(opt_times[i], opt_times[j]);
+            opt_times[i] = max(opt_times[i], opt_times[predecessors[i].back()]);
+            predecessors[i].pop_back();
         }
 
-        opt_times[i] += graph[i][i];
+        opt_times[i] += job_times[i];
     }
 }
 
@@ -105,15 +114,6 @@ void run()
 void set_output()
 {
 #ifdef DEBUG_MODE
-cout << "STATUS: graph\n";
-    for (int i = 1; i < N + 1; i++)
-    {
-        for(int j=1;j<N+1;j++)
-            cout << setw(3) << graph[i][j] << ' ';
-        cout << '\n';
-    }
-    cout << '\n';
-
     cout << "STATUS: opt_times\n";
     for (int i = 1; i < N + 1; i++)
         cout << opt_times[i] << ' ';
@@ -137,8 +137,6 @@ cout << "STATUS: graph\n";
  */
 void deallocate()
 {
-    for (int i = 1; i < N + 1; i++)
-        delete[] graph[i];
 }
 
 /*
